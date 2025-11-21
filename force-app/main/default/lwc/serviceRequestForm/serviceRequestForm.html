@@ -1,0 +1,45 @@
+<template>
+    <template if:false={isLoaded}>
+      <lightning-spinner
+          alternative-text="Loading..." variant="brand">
+      </lightning-spinner>
+    </template>
+
+    <template if:true={isLoaded}>
+        <h1 class="slds-page-header__title slds-m-bottom_medium slds-text-align_center">
+            {labels.TitleLabel}
+        </h1>
+
+        <lightning-card >
+            <div class="slds-grid slds-grid_align-spread slds-p-around_medium slds-p-top_none">
+                <h2 class="slds-text-heading_medium slds-m-bottom_none">{labels.RecentServiceRequestsLabel}</h2>
+                <lightning-button 
+                    label={labels.NewLabel}
+                    onclick={handleNewServiceRequest}>
+                </lightning-button>
+            </div>
+            
+            <template if:true={isRequestsListEmpty}>
+                <p class="slds-text-align_center slds-p-around_medium">{labels.NoServiceRequestsLabel}</p>
+            </template>
+            <template if:false={isRequestsListEmpty}>
+                <div class="slds-p-horizontal_medium slds-p-bottom_small">
+                    <lightning-datatable
+                        data={requestsList}
+                        columns={columns}
+                        key-field="Id"
+                        onsave={handleDatatableSave}
+                        onchange={handleDatatableСhange}>
+                    </lightning-datatable>
+                </div>
+            </template>
+        </lightning-card>
+
+        <template if:true={isModalOpened}>
+            <c-create-service-request-modal
+                onclose={handleClose}
+                onsave={handleSave}>
+            </c-create-service-request-modal>
+        </template>
+    </template>
+</template>
