@@ -25,6 +25,16 @@
     </types>
 
     <types>
+        <members>Service_Request_App_UtilityBar</members>
+        <name>FlexiPage</name>
+    </types>
+
+    <types>
+        <members>Service_Request_App</members>
+        <name>CustomApplication</name>
+    </types>  
+
+    <types>
         <members>Service_Request_Form</members>
         <name>CustomTab</name>
     </types>
